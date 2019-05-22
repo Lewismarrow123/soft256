@@ -1,5 +1,6 @@
-<?php
-class Publication{
+8<?php
+
+class Book2{
 
     private $author;
     private $reviewer;
@@ -38,5 +39,5 @@ $feedback="";
 $administrator="";
 $publication="";
 
-$worker = new Publication($author,$reviewer,$feedback,$administrator,$publication);
+$worker = new Book2($author,$reviewer,$feedback,$administrator,$publication);
 

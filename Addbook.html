@@ -1,0 +1,34 @@
+<!Doctype HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Exe River Publishing</title>
+</head>
+<body>
+<h1>Add Book</h1>
+<p>Use the form below to add a book to the database</p>
+<hr>
+<section>
+    <article id="Book entry">
+        <form action="Book.php" method="post">
+            Book Title<br />
+            <input type="text" name="title">
+            <br />
+            Author <br />
+            <input type="text" name="author" maxlength="10">
+            <br />
+            Reviewer <br />
+            <input type="text" name="reviewer" maxlength="10">
+            <br />
+            Date of submission<br />
+            <input type="date" name="date" value="dd-mm-yyyy">
+            <br />
+            Comments<br />
+            <input type="text" name="comments">
+            <br />
+            <input type="submit" name="submit">
+        </form>
+    </article>
+</section>
+</body>
+</html>

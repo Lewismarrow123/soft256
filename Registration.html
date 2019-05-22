@@ -1,0 +1,54 @@
+<!Doctype HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>User registration Exe River</title>
+</head>
+<body>
+    <h1>User registration</h1>
+    <p>Use this form to sign up to the exe river system</p>
+    <hr>
+    <section>
+        <article id="entry">
+            <form action="RegistrationProcess.php" method="post">
+                Username:(15 char no spaces)<br />
+                <input type="text" name="uname" maxlength="15">
+                <br />
+                Password: (10 char max spaces)<br />
+                <input type="password" name="pw" maxlength="10">
+                <br />
+                First Name:(40 char no spaces)<br />
+                <input type="text" name="fname" maxlength="40">
+                <br />
+                Surname:(40 char no spaces)<br />
+                <input type="text" name="sname" maxlength="40">
+                <br />
+                Email Address:(60 char no spaces)<br />
+                <input type="text" name="email" maxlength="60">
+                <br />
+                Confirm Email:(60 char no spaces)<br />
+                <input type="text" name="ceamil" maxlength="60">
+                <br />
+                Telephone:(11 numbers no spaces)<br />
+                <input type="int" name="tele" maxlength="11">
+                <br />
+                Address:(70 char no spaces)<br />
+                <input type="text" name="address" maxlength="70">
+                <br />
+                PostCode:(8 char no spaces)<br />
+                <input type="text" name="postcode" maxlength="8">
+                <br />
+                User Type:(Please select 1)<br />
+                <input type="radio" name="type" value="admin"> Administrator<br>
+                <input type="radio" name="type" value="editor"> Editor<br>
+                <input type="radio" name="type" value="reviewer"> Reviewer<br>
+                <input type="radio" name="type" value="Author"> Author<br>
+                <input type="radio" name="type" value="Guest"> Guest<br>
+                <br />
+
+                <input type="submit" vaule="Register">
+            </form>
+        </article>
+    </section>
+</body>
+</html>
