@@ -1,144 +1,43 @@
 <?php
 include_once ("DBConnection.php");
-class Reviewer{
+class Reviewer
+{
 
-    private $fname;
-    private $sname;
-    private $email;
-    private $username;
-    private $password;
-    /**
-     * getForm constructor.
-     * @param $f
-     * @param $l
-     * @param $e
-     * @param $u
-     * @param $p
-     */
-    public function __construct($f, $l, $e, $u, $p)
+    public static function ViewBooks($reviewer)
     {
-        $this->fname = $f;
-        echo "First name:", $f, "<br />";
-        $this->sname =$l;
-        echo "Last name:", $l, "<br />";
-        $this->email =$e;
-        echo "Email:", $e, "<br />";
-        $this->username=$u;
-        echo "Username:", $u, "<br />";
-        $this->password=$p;
 
-    }
+        //Output HTML
+        echo "<title>EXERiverPublishing</title>";
+        echo "<h1>Welcome to Exe Rive publishing $reviewer </h1>";
+        echo "<p>View your Books and Feedback</p>";
+        echo "<hr>";
+        echo "<p>Book List</p>";
 
-    /**
-     * @return mixed
-     */
-    public function getFname()
-    {
-        return $this->fname;
-    }
-
-    /**
-     * @param mixed $fname
-     */
-    public function setFname($fname)
-    {
-        $this->fname = $fname;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSname()
-    {
-        return $this->sname;
-    }
-
-    /**
-     * @param mixed $sname
-     */
-    public function setSname($sname)
-    {
-        $this->sname = $sname;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * @param mixed $email
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    /**
-     * @param mixed $username
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
-     * @param mixed $password
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-    }
-
-
-    public static function CreateReviewer($fnameform, $snameform, $emailform, $usernameform, $passwordform, $conn) {
-        $author = new Reviewer($fnameform, $snameform, $emailform, $usernameform, $passwordform);
-        $author->saveToDatabase();
-        return $author;
-    }
-
-    public function saveToDatabase(){
+        //SQL to get book from Database
         global $conn;
-        $getF=$this->getFname();
-        $getL=$this->getSname();
-        $getE=$this->getEmail();
-        $getU=$this->getUsername();
-        $getP=$this->getPassword();
-
-        $sql=("INSERT INTO `Reviewer` (`ReviewerID`, `Fname`, `Sname`, `Email`, `Username`, `Password`) VALUES (NULL, '$getF', '$getL', '$getE', '$getU', '$getP')");
-
-        if ($conn->query($sql) === TRUE) {
-            echo "Reviewer Added Successfully";
-        } else {
-            echo "Error:" . $sql . "<br>" . $conn->error;
+        $sql = ("SELECT * FROM `Books` WHERE `Reviewer1` = '$reviewer'");
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $Book = $row["Book"];
+                echo "Book:$Book" . "<br/>";
+                echo "<a href='AddFeedback.php'>Add Feedback</a>";
+            }
+        } elseif ($result->num_rows < 0) {
+            echo "No results in column Reviewer1";
+            $try2 = ("SELECT * FROM `Books` WHERE `Reviewer2` = '$reviewer'");
+            $result2 = $conn->query($try2);
+            if ($result2->num_rows > 0) {
+                while ($row = $result2->fetch_assoc()) {
+                    $Book = $row["Book"];
+                    echo "Book:$Book" . "<br/>";
+                    echo "<a href='AddFeedback.php'>Add Feedback</a>";
+                }
+            }
+            elseif ($result->num_rows< 0){
+                echo"You are currently assigned no books to review";
+            }
         }
-
-        $conn->close();
     }
 }
-
-$fnameform = $_POST['fname'];
-$snameform = $_POST['sname'];
-$emailform= $_POST['email'];
-$usernameform= $_POST['username'];
-$passwordform=$_POST['password'];
-$worker= Reviewer::CreateReviewer($fnameform, $snameform, $emailform, $usernameform, $passwordform, $conn);
+$reviewer=$unamelogin;
