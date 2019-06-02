@@ -21,12 +21,16 @@ class Author
              while($row = $result->fetch_assoc()) {
                 $Book = $row["Book"];
                 echo "Book:$Book";
-                echo"<a href='ViewFeeback.php'>View Feedback</a>"."<br/>";
+                echo"<a href='ShowFeedback.php'>View Feedback</a>"."<br/>";
                 //$worker= new ViewFeedback();
             }
         }
         elseif($result->num_rows < 0){
-        echo"You currently have no books in the system. Please ask an administrator to add them";
+        echo"You currently have no books in the system. Please ask an administrator to add them". "<br/>";
+        echo "<a href='Login.html'>Log Out</a>" . "<br/>";
+    }
+    echo"<a href='Addbook.html'>Add a book to the database</a>"."<br/>";
+    echo "<a href='GetPayment.php'>See Payment history for a book</a>" . "<br/>";
     }
 }
 $author=$unamelogin;

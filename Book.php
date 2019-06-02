@@ -7,6 +7,7 @@ class Book{
     private $reviewer1;
     private $reviewer2;
     private $date;
+    private $editor;
     private $comment;
     /**
      * getForm constructor.
@@ -17,7 +18,7 @@ class Book{
      * @param $d
      * @param $c
      */
-    public function __construct($t, $a, $r1, $r2, $d, $c)
+    public function __construct($t, $a, $r1, $r2, $e, $d, $c)
     {
         $this->title = $t;
         echo "Book Name:", $t, "<br />";
@@ -27,6 +28,8 @@ class Book{
         echo "Reviewer:", $r1, "<br />";
         $this->reviewer2 =$r2;
         echo "Reviewer:", $r2, "<br />";
+        $this->editor =$e;
+        echo "Editor:", $e , "<br />";
         $this->date=$d;
         echo "Date:", $d, "<br />";
         $this->comment =$c;
@@ -128,12 +131,26 @@ class Book{
     {
         $this->reviewer2 = $reviewer2;
     }
+    /**
+     * @return mixed
+     */
+    public function getEditor()
+    {
+        return $this->editor;
+    }
+
+    /**
+     * @param mixed $editor
+     */
+    public function setEditor($editor)
+    {
+        $this->editor = $editor;
+    }
 
 
 
-
-    public static function CreateBook($titleform, $authorform, $reviewerform1, $reviewerform2, $dateform, $commentform) {
-        $book = new Book($titleform, $authorform, $reviewerform1, $reviewerform2, $dateform, $commentform);
+    public static function CreateBook($titleform, $authorform, $reviewerform1, $reviewerform2, $editorform, $dateform, $commentform) {
+        $book = new Book($titleform, $authorform, $reviewerform1, $reviewerform2, $editorform, $dateform, $commentform);
        $book->saveToDatabase();
        return $book;
     }
@@ -144,10 +161,11 @@ class Book{
         $getA=$this->getAuthor();
         $getR1=$this->getReviewer1();
         $getR2=$this->getReviewer2();
+        $getE=$this->getEditor();
         $getD=$this->getDate();
         $getC=$this->getComment();
 
-        $sql=("INSERT INTO `Books` (`BookID`, `Book`, `Author`, `Reviewer1`, `Reviewer2`, `Data`, `Comments`) VALUES (NULL, '$getT', '$getA', '$getR1', '$getR2', '$getD', '$getC')");
+        $sql=("INSERT INTO `Books` (`BookID`, `Book`, `Author`, `Reviewer1`, `Reviewer2`, `Editor`, `Date`, `Comments`) VALUES (NULL, '$getT', '$getA', '$getR1', '$getR2', '$getE','$getD', '$getC')");
 
         if ($conn->query($sql) === TRUE) {
             echo "Book Added Successfully";
@@ -163,9 +181,10 @@ $titleform = $_POST['title'];
 $authorform = $_POST['author'];
 $reviewerform1= $_POST['reviewer1'];
 $reviewerform2= $_POST['reviewer2'];
+$editorform=$_POST['editor'];
 $dateform= $_POST['date'];
 $commentform=$_POST['comments'];
-$worker= Book::CreateBook($titleform, $authorform, $reviewerform1, $reviewerform2, $dateform, $commentform, $conn);
+$worker= Book::CreateBook($titleform, $authorform, $reviewerform1, $reviewerform2, $editorform, $dateform, $commentform, $conn);
 
 
 

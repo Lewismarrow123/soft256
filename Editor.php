@@ -1,21 +1,21 @@
 <?php
 include_once ("DBConnection.php");
-class Reviewer
+class Editor
 {
 
-    public static function ViewBooks($reviewer)
+    public static function ViewBooks($editor)
     {
 
         //Output HTML
         echo "<title>EXERiverPublishing</title>";
-        echo "<h1>Welcome to Exe Rive publishing $reviewer </h1>";
-        echo "<p>View your Books and Feedback</p>";
+        echo "<h1>Welcome to Exe Rive publishing $editor </h1>";
+        echo "<p>Select a Book to Edit</p>";
         echo "<hr>";
         echo "<p>Book List</p>";
 
         //SQL to get book from Database
         global $conn;
-        $sql = ("SELECT * FROM `Books` WHERE `Reviewer1` = '$reviewer' OR `Reviewer2` = '$reviewer'");
+        $sql = ("SELECT * FROM `Books` WHERE `Editor` = '$editor'");
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -28,9 +28,9 @@ class Reviewer
             echo "<a href='Login.html'>Log Out</a>" . "<br/>";
         }
         echo "<a href='ShowFeedback.php'>View ALL Feedback</a>" . "<br/>";
-        echo "<a href='AddMeetingNotes.php.php'>Record Meeting</a>" . "<br/>";
+        echo "<a href='AddMeetingNotes.php'>Record Meeting</a>" . "<br/>";
         echo "<a href='RequestPayment.php'>Advance progress and request a payment</a>" . "<br/>";
-
+        echo "<a href='GetPayment.php'>See Payment history for a book</a>" . "<br/>";
     }
 }
-$reviewer=$unamelogin;
+$editor=$unamelogin;

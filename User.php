@@ -9,6 +9,8 @@ include_once ("DBConnection.php");
 include_once ("Author.php");
 include_once ("Reviewer.php");
 include_once ("Administrator.php");
+include_once ("Agent.php");
+include_once ("Editor.php");
 class User{
 
     private $fname;
@@ -173,7 +175,7 @@ if (isset($_POST['submit'])) {
     $passwordform = $_POST['password'];
     $userole = $_POST['userrole'];
 
-        if($fnameform==NULL && $snameform==NULL && $emailform==NULL && $usernameform==NULL && $passwordform=NULL && $userole==NULL){
+        if($fnameform==NULL && $snameform==NULL && $emailform==NULL && $usernameform==NULL && $passwordform==NULL && $userole==NULL){
             header("Location:AddUser.html");
         }
     $worker = User::CreateUser($fnameform, $snameform, $emailform, $usernameform, $passwordform, $userole, $conn);
@@ -181,7 +183,7 @@ if (isset($_POST['submit'])) {
 else{
     $unamelogin=$_POST['uname'];
     $pwlogin =$_POST['pw'];
-
+    
     if($unamelogin==NULL && $pwlogin==NULL)
     {
         header("Location:login.html");
@@ -190,7 +192,7 @@ else{
         $result=$conn->query($sql);
 
         if($result->num_rows>0) {
-            $sql2=("SELECT `UserRole` FROM `USERS` WHERE `Username` ='$unamelogin'");
+            $sql2=("SELECT `UserRole` FROM `Users` WHERE `Username` ='$unamelogin'");
             $result2=$conn->query($sql2);
 
             if($result2->num_rows>0){
@@ -209,9 +211,11 @@ else{
                 }
                 elseif($role=="editor"){
                     echo"Hello Editor ".$unamelogin;
+                    $worker= Editor::ViewBooks($unamelogin);
                 }
                 elseif($role=="agent"){
                     echo"Hello Agent ".$unamelogin;
+                    $worker = Agent::displayAgentTask($unamelogin);
                 }
                 elseif($role=="reviewer"){
                     echo "Hello Reviewer".$unamelogin;
