@@ -1,7 +1,21 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: lewis
+ * Date: 2019-05-30
+ * Time: 16:27
+ */
+//Provides a connection to the database
 include_once ("DBConnection.php");
+
+/**
+ * Created by: Lewis Marrow. On Date: 20th May 2019, Last Edited:3rd June 2019
+ * Used to display the task's and roles the agent can do and it is used to delete users from the database.
+ * Class Agent
+ */
 class Agent
 {
+    //Displays the roles and task's a agent can do
     public static function displayAgentTask($agent)
     {
         //Output HTML
@@ -13,5 +27,7 @@ class Agent
 
     }
 }
+//Calls the class agent
 $worker= new Agent();
-//$agent=$unamelogin;
+//Uses the variable from the class User
+$agent=$unamelogin;

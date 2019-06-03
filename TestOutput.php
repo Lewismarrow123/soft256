@@ -5,10 +5,22 @@
  * Date: 2019-06-02
  * Time: 20:06
  */
+//Include Connection to the database
 include_once ("DBConnection.php");
+
+/**
+ * Class testOutput
+ * Created by: Created date: June 2nd 2019 Last Modified:June 3rd 2019
+ * Used to teste if the code works with hard coded values of author and book
+ */
 class testOutput
 {
 
+    /**
+     * @param $author
+     * @param $book
+     * Used to call other functions and get the variables $author and $book
+     */
     public static function OutputData($author, $book)
     {
         echo $book;
@@ -19,6 +31,11 @@ class testOutput
         $displaypayment=testOutput::displayPaymentHistory($author);
     }
 
+    /**
+     * @param $author
+     * @param $book
+     * Used to select a book
+     */
     private static function SelectBook($author, $book)
     {
         global $conn;
@@ -34,6 +51,10 @@ class testOutput
         }
     }
 
+    /**
+     * @param $author
+     * Used to select an user
+     */
     private static function SelectUser($author)
     {
         global $conn;
@@ -49,6 +70,10 @@ class testOutput
         }
     }
 
+    /**
+     * @param $book
+     * Used to display feedback about that book
+     */
     private static function displayFeedback($book)
     {
         global $conn;
@@ -66,6 +91,10 @@ class testOutput
     }
 
 
+    /**
+     * @param $author
+     * Used to display payments that the author has made
+     */
     private static function displayPaymentHistory($author)
     {
         global $conn;
@@ -82,6 +111,8 @@ class testOutput
         }
     }
 }
+//hard coded variables
 $author="A1";
 $book="Book1";
+//Calls the class and method
 $OutputData = testOutput::OutputData($author, $book);

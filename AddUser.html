@@ -1,3 +1,5 @@
+<!--Date created: Monday 13th May 2019. Created By:Lewis Marrow. For Application:Soft256-->
+<!--This page is used by an Admninistrator to add a user to the database-->
 <!Doctype HTML>
 <html>
 <head>
@@ -5,36 +7,39 @@
     <title>Exe River Publishing</title>
 </head>
 <body>
-<h1>Add User</h1>
-<p>Use the form below to add a Author to the Database</p>
-<hr>
-<section>
-    <article id="User entry">
-        <form action="User.php" method="post">
-            First Name<br />
-            <input type="text" name="fname">
-            <br />
-            Last Name<br />
-            <input type="text" name="sname">
-            <br />
-            Email<br />
-            <input type="text" name="email" >
-            <br />
-            Username<br />
-            <input type="text" name="username">
-            <br />
-            Password<br />
-            <input type="password" name="password">
-            <br />
-            Role<br />
-            <input type="radio" name="userrole" value="author">Author<br>
-            <input type="radio" name="userrole" value="agent">Agent<br>
-            <input type="radio" name="userrole" value="editor">Editor<br>
-            <input type="radio" name="userrole" value="reviewer">Reviewer<br>
-            <input type="radio" name="userrole" value="administrator">Administrator<br>
-            <input type="submit" name="submit">
-        </form>
-    </article>
-</section>
+    <h1>Add User</h1>
+    <p>Use the form below to add a Author to the Database</p>
+    <hr>
+    <section>
+        <article id="User entry">
+            <form action="User.php" method="post">
+                First Name<br />
+                <input type="text" name="fname">
+                <br />
+                Last Name<br />
+                <input type="text" name="sname">
+                <br />
+                Email<br />
+                <input type="text" name="email" >
+                <br />
+                Username<br />
+                <input type="text" name="username">
+                <br />
+                Password<br />
+                <input type="password" name="password">
+                <br />
+                <!-- Allow's admin to select a role for the user. this determines what right's the user has in the system.-->
+                <!-- This access is given to the user at Login to the system-->
+                Role<br />
+                <input type="radio" name="userrole" value="author">Author<br>
+                <input type="radio" name="userrole" value="agent">Agent<br>
+                <input type="radio" name="userrole" value="editor">Editor<br>
+                <input type="radio" name="userrole" value="reviewer">Reviewer<br>
+                <input type="radio" name="userrole" value="administrator">Administrator<br>
+                <!--Submit's the data to the user class for processing-->
+                <input type="submit" name="submit">
+            </form>
+        </article>
+    </section>
 </body>
 </html>

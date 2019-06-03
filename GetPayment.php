@@ -1,4 +1,9 @@
-<?php include_once("DBConnection.php");?>
+<?php
+//Includes a connect to the database
+include_once("DBConnection.php");
+?>
+<!--Date created: Monday 13th May 2019. Created By:Lewis Marrow. For Application:Soft256-->
+<!--This page is used by a User to see if a payment is currently pending for a book-->
 <!Doctype HTML>
 <html>
 <head>
@@ -13,6 +18,7 @@
 <form action="Payment.php" method="post">
     Book<br />
     <Select name="books">
+        <!--Select all books from the database and display in a menu-->
         <?php
         $sql=("SELECT * FROM `Books`");
         $result=$conn->query($sql);
@@ -26,6 +32,7 @@
         ?>
     </Select>
     <br />
+    <!--Submit this vaule to the Payment Class-->
     <input type="submit" name="getPayment">
 </form>
 </body>

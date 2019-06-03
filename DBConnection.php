@@ -1,4 +1,7 @@
+<!--Date created: Monday 13th May 2019. Created By:Lewis Marrow. For Application:Soft256-->
+<!--This page is used by the application to add interact with the database-->
 <?php
+//Specifiy login credentials
 $servername = "localhost";
 $username = "root";
 $password = "root";

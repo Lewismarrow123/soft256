@@ -1,3 +1,6 @@
+<!--Date created: Monday 20th May 2019. Created By:Lewis Marrow. For Application:Soft256-->
+<!--This page is used by an Editor or Reviewer to add feedback to a book from the  database-->
+<!--This provides an initial link to the database file to add a connection to the database-->
 <?php include_once("DBConnection.php");?>
 <!Doctype HTML>
 <html>
@@ -14,6 +17,7 @@
         <form action="Feedback.php" method="post">
             Book<br />
             <Select name="books">
+            <!--Select's all Books from the database and then displays them in a drop down list for the user to select a book of there choice-->
             <?php
             $sql=("SELECT * FROM `Books`");
             $result=$conn->query($sql);
@@ -27,6 +31,7 @@
             ?>
             </Select>
             </br>
+            <!--Select's all Reviewers from the database and then displays them in a drop down list for the user to select their username-->
             Reviewer<br/>
             <Select name="reviewers">
                 <?php
@@ -49,6 +54,7 @@
             Date<br />
             <input type="date" name="date" value="dd-mm-yyyy">
             <br />
+            <!-- On Submit the data is passed to be processed in Feedback.php-->
             <input type="submit" name="submit">
         </form>
     </article>

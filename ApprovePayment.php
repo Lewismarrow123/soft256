@@ -1,3 +1,5 @@
+<!--Date created: Sunday 2nd June 2019. Created By:Lewis Marrow. For Application:Soft256-->
+<!--This page is used by an Administrator to approve a add a payment-->
 <?php include_once("DBConnection.php");?>
 <!Doctype HTML>
 <html>
@@ -12,6 +14,7 @@
 <form action="Payment.php" method="post">
     Book<br />
     <Select name="books">
+        <!--Select's all Books from the database and then displays them in a drop down list for the user to select a book of there choice-->
         <?php
         $sql=("SELECT * FROM `Books`");
         $result=$conn->query($sql);
@@ -26,6 +29,7 @@
     </Select>
     </br>
     Author<br/>
+    <!--Select's all Author from the database and then displays them in a drop down list for the user to select a book of there choice-->
     <Select name="author">
         <?php
         $sql=("SELECT * FROM `Users` WHERE `UserRole` = 'author'");
@@ -39,10 +43,12 @@
         ?>
     </Select>
     </br>
+    <!--Enter the payment amount to approve-->
     Payment Amount<br />
     <input type="text" name="Amount">
     <br />
     <br />
+    <!--Passes the data to the payment class-->
     <input type="submit" name="ApprovePayment">
 </form>
 </body>

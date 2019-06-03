@@ -1,3 +1,5 @@
+<!--Date created: Thursday 30th May 2019. Created By:Lewis Marrow. For Application:Soft256-->
+<!--This page is used by an Reviewer and Editor to add meeting notes the database-->
 <!Doctype HTML>
 <html>
 <head>
@@ -26,7 +28,8 @@
             Date of submission<br />
             <input type="date" name="date" value="dd-mm-yyyy">
             <br />
-            <input type="submit" name="submit">
+            <!--Submit the data to the Meeting Notes class for processing-->
+         <input type="submit" name="submit">
         </form>
     </article>
 </section>

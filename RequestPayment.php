@@ -1,4 +1,9 @@
-<?php include_once("DBConnection.php");?>
+<?php
+//Includes the link to the database connection
+include_once("DBConnection.php");
+?>
+<!--Date created: Thursday 30th May 2019. Created By:Lewis Marrow. For Application:Soft256-->
+<!--This page is used by a User to request a payment for a book-->
 <!Doctype HTML>
 <html>
 <head>
@@ -13,6 +18,7 @@
     <form action="Payment.php" method="post">
         Book<br />
         <Select name="books">
+            <!--Get books from database-->
             <?php
             $sql=("SELECT * FROM `Books`");
             $result=$conn->query($sql);
@@ -27,6 +33,7 @@
         </Select>
         </br>
         Author<br/>
+        <!--Get Author from database-->
         <Select name="author">
             <?php
             $sql=("SELECT * FROM `Users` WHERE `UserRole` = 'author'");
@@ -40,6 +47,7 @@
             ?>
         </Select>
         </br>
+        <!--Get payment and pass information to the Payment Class-->
         Payment Amount<br />
         <input type="text" name="Amount">
         <br />

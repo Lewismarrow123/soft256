@@ -1,5 +1,13 @@
 <?php
+//Include a link to the database
 include_once ("DBConnection.php");
+
+/**
+ * Class Book
+ * Created by: Lewis Marrow. On Date: 20th May 2019, Last Edited:3rd June 2019
+ * Used to Construct and Create a book in the database
+ */
+
 class Book{
 
     private $title;
@@ -148,14 +156,16 @@ class Book{
     }
 
 
-
+    //Used to create a book from the given variables
     public static function CreateBook($titleform, $authorform, $reviewerform1, $reviewerform2, $editorform, $dateform, $commentform) {
         $book = new Book($titleform, $authorform, $reviewerform1, $reviewerform2, $editorform, $dateform, $commentform);
-       $book->saveToDatabase();
+       //Calls function save to database
+        $book->saveToDatabase();
        return $book;
     }
 
     public function saveToDatabase(){
+        //Calls the global variable $conn and then get the other variables from the getters
         global $conn;
         $getT=$this->getTitle();
         $getA=$this->getAuthor();
@@ -164,7 +174,7 @@ class Book{
         $getE=$this->getEditor();
         $getD=$this->getDate();
         $getC=$this->getComment();
-
+        //Inserts the values into the database
         $sql=("INSERT INTO `Books` (`BookID`, `Book`, `Author`, `Reviewer1`, `Reviewer2`, `Editor`, `Date`, `Comments`) VALUES (NULL, '$getT', '$getA', '$getR1', '$getR2', '$getE','$getD', '$getC')");
 
         if ($conn->query($sql) === TRUE) {
@@ -172,11 +182,11 @@ class Book{
         } else {
             echo "Error:" . $sql . "<br>" . $conn->error;
         }
-
+        //Closes the database connection
         $conn->close();
     }
 }
-
+//Get values from the form and puts them into varaibles. This then passes it to the Class Book and the method CreateBook
 $titleform = $_POST['title'];
 $authorform = $_POST['author'];
 $reviewerform1= $_POST['reviewer1'];
